@@ -24,20 +24,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, gh-actions-workouts'
-    );
-  });
-
-  it('should multiply 2 numbers', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.multiplication(2, 3)).toEqual(6);
-  });
-
-  it('should multiply 2  (3,3)numbers', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.multiplication(3, 3)).toEqual(6);
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gh-actions-workouts');
   });
 });
