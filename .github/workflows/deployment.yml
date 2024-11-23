@@ -1,0 +1,52 @@
+# Workflow para desplegar contenido estático de Angular en GitHub Pages
+name: Deploy Angular app to GitHub Pages
+
+on:
+  # Se ejecuta en pushes que apunten a la rama principal
+  push:
+    branches: ["main"]
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Establece los permisos del GITHUB_TOKEN para permitir el despliegue en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permitir solo una implementación concurrente, evitando cancelar las que están en progreso.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Job de despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build -- --output-path=dist  # Compila la aplicación y genera los archivos en dist/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Sube solo la carpeta de salida de Angular
+          path: 'dist'  # Asegúrate de que coincide con la carpeta de salida especificada en el paso de build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
