@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Sube solo la carpeta de salida de Angular
-          path: 'dist'  # Asegúrate de que coincide con la carpeta de salida especificada en el paso de build
+          path: 'dist/browser'  # Asegúrate de que coincide con la carpeta de salida especificada en el paso de build
 
       - name: Deploy to GitHub Pages
         id: deployment
