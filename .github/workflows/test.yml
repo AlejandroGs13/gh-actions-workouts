@@ -15,4 +15,4 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test-headless
+        run: npm run test-headless
