@@ -1,0 +1,148 @@
+<h1>What is GitHub Actions?</h1>
+<p>
+  <strong>GitHub Actions</strong> is a CI/CD platform provided by GitHub that
+  enables you to automate workflows directly within your repository. With it,
+  you can configure tasks to run automatically in response to events such as:
+</p>
+<ul>
+  <li><strong>Push</strong>: When code is pushed to a repository.</li>
+  <li>
+    <strong>Pull Request</strong>: When a pull request is opened, updated, or
+    merged.
+  </li>
+  <li><strong>Schedule</strong>: On a defined schedule (e.g., daily tasks).</li>
+  <li>
+    <strong>Manual</strong>: Trigger workflows manually from the Actions tab.
+  </li>
+</ul>
+
+<h2>Main Features</h2>
+<p>
+  1. <strong>Custom Automation</strong>: Write your own scripts and configure
+  specific workflows for your project.
+</p>
+<p>
+  2. <strong>Event Triggers</strong>: Automate tasks in response to events like
+  code commits, issue creation, or releases.
+</p>
+<p>3. <strong>Flexible Execution Environments</strong>:</p>
+<ul>
+  <li>
+    Supports <strong>Ubuntu</strong>, <strong>Windows</strong>, and
+    <strong>macOS</strong>.
+  </li>
+  <li>Container support (Docker) for replicating specific setups.</li>
+</ul>
+<p>
+  4. <strong>GitHub Ecosystem Integration</strong>: Direct access to repository
+  data, secrets, and configurations.
+</p>
+
+<h2>Why Use GitHub Actions?</h2>
+<ul>
+  <li>
+    <strong>Continuous Integration (CI)</strong>: Automatically test your
+    application with every code update.
+  </li>
+  <li>
+    <strong>Continuous Deployment (CD)</strong>: Deploy your app to production
+    or testing environments automatically.
+  </li>
+  <li>
+    <strong>Automate Repetitive Tasks</strong>: Examples include updating
+    dependencies, linting, and formatting code.
+  </li>
+  <li>
+    <strong>YAML-based Pipelines</strong>: Easy to understand and share
+    configuration files within your repository.
+  </li>
+</ul>
+
+<h2>How It Works</h2>
+<p>
+  1. <strong>Workflows</strong>: Sets of automations defined in YAML files
+  within the <code>.github/workflows/</code> directory. Each workflow describes
+  a process, like a CI/CD pipeline.
+</p>
+<p>
+  2. <strong>Jobs</strong>: Groups of steps that run in the same environment.
+  Jobs in a workflow can run in parallel or sequentially.
+</p>
+<p>
+  3. <strong>Steps</strong>: Individual tasks within a job. These can be custom
+  commands or prebuilt actions.
+</p>
+<p>
+  4. <strong>Actions</strong>: Reusable units of work within steps. You can use
+  predefined actions or create your own.
+</p>
+
+<h2>Simple Workflow Example</h2>
+<br>
+<pre>
+<code>name: CI Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout&#64;v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node&#64;v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test</code>
+</pre>
+<br>
+<p>This example:</p>
+<ul>
+  <li>Runs on every <code>push</code> to the <code>main</code> branch.</li>
+  <li>
+    Performs the following tasks:
+    <ul>
+      <li>Clones the repository (checkout).</li>
+      <li>Sets up Node.js.</li>
+      <li>Installs dependencies.</li>
+      <li>Runs automated tests.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Benefits</h2>
+<ul>
+  <li><strong>Native Integration with GitHub</strong></li>
+  <li><strong>Easy Setup</strong> using predefined templates.</li>
+  <li>
+    <strong>Extensive Community and Marketplace</strong> with reusable actions.
+  </li>
+  <li><strong>Scalability</strong> for projects of all sizes.</li>
+</ul>
+
+<h2>Marketplace</h2>
+<p>
+  GitHub Actions has a marketplace where you can find thousands of prebuilt
+  actions ready to use, such as:
+</p>
+<ul>
+  <li>Automating deployments.</li>
+  <li>Integrating linting tools.</li>
+  <li>Managing dependencies.</li>
+  <li>Sending notifications to Slack or Discord.</li>
+</ul>
+
+<p>
+  With GitHub Actions, you can easily set up CI/CD pipelines and automate
+  essential workflows for your project.
+</p>
