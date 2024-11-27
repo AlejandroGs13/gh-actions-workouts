@@ -1,0 +1,22 @@
+name: Issues Workflow
+on:
+  issues:
+    types: [opened, edited, deleted]
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get issue body
+        id: get_issue
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = await github.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            return issue.data.body;
+      - name: Triage issue
+        run: echo ${{ steps.get_issue.outputs.body }}
